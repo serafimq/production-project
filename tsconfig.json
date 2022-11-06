@@ -7,7 +7,10 @@
     "jsx": "react-jsx", // дает возможность писать jsx , react-jsx - дает возможность не импортировать React в компонент
     "allowJs": true, // обрабатываем и js и ts
     "moduleResolution": "node",
-    // "baseUrl": ".", // базовый путь для абсолютного импорта
+     "baseUrl": ".", // базовый путь для абсолютного импорта
+    "paths": {
+      "*": ["./src/*"], // все обсалютные импорты и экспорты будут идти из папки src
+    },
     // esModuleInterop - позволяет работать с пакетами, которые используют common js как с обычными пакетами с помощью import (require() module.export) = common js
     // import Moment from 'moment'; => без флага esMode... результат undefined, с флагом [object Object]
     "esModuleInterop": true,
