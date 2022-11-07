@@ -3,6 +3,11 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/config";
 
 export function buildLoader({isDev}: BuildOptions): webpack.RuleSetRule[] {
+    // loader для импорта svg
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
 
     const cssLoader = {
         test: /\.s[ac]ss$/i, // расширения файлов, которые будут проходить через loader => ts / tsx
@@ -31,8 +36,20 @@ export function buildLoader({isDev}: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/, // исключаем ноде модули
     }
 
+    // loader для картинок
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader'
+            }
+        ]
+    }
+
     return [ // лоадеры, котоыре обрабатывают файлы, которые выходят за рамки js => jpeg, gif, scss, css, ts, svg ...
         // порядок, в котором лоудеры возвращаютс, имеет значение
+        fileLoader,
+        svgLoader,
         typescriptLoader,
         cssLoader,
     ]
