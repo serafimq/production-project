@@ -3,7 +3,9 @@ import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BuildOptions } from './types/config';
 
-export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins(
+    { paths, isDev }: BuildOptions,
+): webpack.WebpackPluginInstance[] {
     return [ // добавляем разные плагины
         new HtmlWebpackPlugin({ // плагин для HTML сборки и подключение к нему js
             template: paths.html,

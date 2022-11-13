@@ -9,6 +9,26 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         use: ['@svgr/webpack'],
     };
 
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/, // исключаем ноде модули
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env'],
+                plugins: [
+                    [
+                        'i18next-extract',
+                        {
+                            locales: ['ru', 'en'],
+                            keyAsDefaultValue: true,
+                        },
+                    ],
+                ],
+            },
+        },
+    };
+
     const cssLoader = {
         test: /\.s[ac]ss$/i, // расширения файлов, которые будут проходить через loader => ts / tsx
         use: [
@@ -52,6 +72,7 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         // порядок, в котором лоудеры возвращаютс, имеет значение
         fileLoader,
         svgLoader,
+        babelLoader,
         typescriptLoader,
         cssLoader,
     ];
