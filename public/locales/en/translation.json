@@ -5,5 +5,8 @@
   "О сайте": "About",
   "Переключить": "Toggle",
   "Загрузка": "Loading...",
-  "Страница не найдена": "Page not found "
+  "Страница не найдена": "Page not found ",
+  "Произошла не предвиденная ошибка": "An unexpected error has occurred",
+  "Обновить страницу": "Reload page",
+  "throw Error": "throw Error"
 }
