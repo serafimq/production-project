@@ -7,7 +7,7 @@ import { BuildOptions } from './types/config';
 export function buildPlugins(
     { paths, isDev }: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
-    return [ // добавляем разные плагины
+    const plugins = [
         new HtmlWebpackPlugin({ // плагин для HTML сборки и подключение к нему js
             template: paths.html,
         }),
@@ -19,11 +19,14 @@ export function buildPlugins(
         new webpack.DefinePlugin({ // возможность добавлять глобальные переменные
             __IS_DEV__: JSON.stringify(isDev), // глобальная переенная dev или prod
         }),
-        new webpack.HotModuleReplacementPlugin(),
-
-        // plugin для анализа бандлов в приложении
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }),
     ];
+    if (isDev) {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+        // plugin для анализа бандлов в приложении
+        plugins.push(new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }));
+    }
+
+    return plugins;
 }

@@ -6,6 +6,9 @@
     --font-size-l: 24px;
     --font-line-l: 32px;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+    --font-size-xl: 32px;
+    --font-line-xl: 40px;
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
     // Size
     --navbar-height: 50px;
@@ -13,11 +16,10 @@
     --sidebar-width-collapsed: 80px;
 
     // Color
-
     --bg-color: #e8e8ea;
     --inverted-bg-color: #090949;
-    --primary-color: #0232c2;
-    --secondary-color: #0449e0;
-    --inverted-primary-color: #049604;
-    --inverted-secondary-color: #04ff04;
+    --primary-color: #0449e0;
+    --secondary-color: #0232c2;
+    --inverted-primary-color: #04ff04;
+    --inverted-secondary-color: #049604;
 }
