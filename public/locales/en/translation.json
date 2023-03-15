@@ -9,5 +9,7 @@
   "Произошла не предвиденная ошибка": "An unexpected error has occurred",
   "Обновить страницу": "Reload page",
   "throw Error": "throw Error",
-  "Короткий язык": "En"
+  "Короткий язык": "En",
+  "increment": "increment",
+  "decrement": "decrement"
 }
