@@ -11,5 +11,9 @@
   "throw Error": "throw Error",
   "Короткий язык": "Ру",
   "increment": "increment",
-  "decrement": "decrement"
+  "decrement": "decrement",
+  "Введите логин": "Введите логин",
+  "Введите пароль": "Введите пароль",
+  "Войти": "Войти",
+  "Введите текст": "Введите текст"
 }
