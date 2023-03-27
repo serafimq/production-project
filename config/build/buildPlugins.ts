@@ -5,7 +5,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(
-    { paths, isDev }: BuildOptions,
+    { paths, isDev, apiUrl }: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
     const plugins = [
         new HtmlWebpackPlugin({ // плагин для HTML сборки и подключение к нему js
@@ -18,6 +18,7 @@ export function buildPlugins(
         }),
         new webpack.DefinePlugin({ // возможность добавлять глобальные переменные
             __IS_DEV__: JSON.stringify(isDev), // глобальная переенная dev или prod
+            __API__: JSON.stringify(apiUrl),
         }),
     ];
     if (isDev) {

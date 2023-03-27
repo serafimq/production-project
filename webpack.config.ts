@@ -13,11 +13,13 @@ export default (env: BuildEnv) => { // передаем env из package.json
 
     const mode = env.mode || 'development';
     const isDev = mode === 'development';
+    const apiUrl = env.apiUrl || 'http://localhost:8000';
     const PORT = env.port || 3000;
 
     const config: webpack.Configuration = buildWebpackConfig({
         mode, // мод development или production
         paths,
+        apiUrl,
         isDev, // режим работы dev
         port: PORT, // порт для запуска devServera
 
