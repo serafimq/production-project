@@ -22,7 +22,7 @@ export default (env: BuildEnv) => { // передаем env из package.json
         apiUrl,
         isDev, // режим работы dev
         port: PORT, // порт для запуска devServera
-
+        project: 'frontend',
     });
 
     return config;
