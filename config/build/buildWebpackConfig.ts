@@ -16,6 +16,7 @@ export function buildWebpackConfig(
             filename: '[name].[contenthash].js', // название файла, [name - можно настроить в entry], [contenthash] - добавляет хэши для сборки,чтобы браузеры не кешироваил файлы
             path: paths.build,
             clean: true, // чистит build после новой сборки
+            publicPath: '/',
         },
         plugins: buildPlugins(options),
         module: {
