@@ -6,7 +6,7 @@ import {
 } from '../lib/ThemeContext';
 
 const defaultTheme = localStorage
-    .getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
+    .getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.DARK;
 
 interface ThemeProviderProps {
     initialTheme?: Theme;
@@ -20,7 +20,6 @@ const ThemeProvider: FC<ThemeProviderProps> = (props) => {
         theme,
         setTheme,
     }), [theme]);
-
     return (
         <ThemeContext.Provider value={defaultProps}>
             {children}
