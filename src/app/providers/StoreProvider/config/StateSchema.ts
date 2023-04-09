@@ -10,8 +10,9 @@ import { AxiosInstance } from 'axios';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router-dom';
 import { ArticleDetailsSchema } from 'entities/Article';
+import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 
-export interface StateScheme {
+export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
 
@@ -19,18 +20,19 @@ export interface StateScheme {
     loginForm?: LoginSchema;
     profile?: ProfileScheme;
     articleDetails?: ArticleDetailsSchema;
+    articleDetailsComments?: ArticleDetailsCommentsSchema;
 }
 
-export type StateSchemeKey = keyof StateScheme;
+export type StateSchemaKey = keyof StateSchema;
 
 export interface ReducerManager {
-    getReducerMap: () => ReducersMapObject<StateScheme>;
-    reduce: (state: StateScheme, action: AnyAction) => CombinedState<StateScheme>;
-    add: (key: StateSchemeKey, reducer: Reducer) => void;
-    remove: (key: StateSchemeKey) => void;
+    getReducerMap: () => ReducersMapObject<StateSchema>;
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
 }
 
-export interface ReduxStoreWithManager extends EnhancedStore<StateScheme> {
+export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
     reducerManager: ReducerManager;
 }
 
@@ -42,5 +44,5 @@ export interface ThunkExtraArg {
 export interface ThunkConfig<T> {
     rejectValue: T;
     extra: ThunkExtraArg;
-    state: StateScheme;
+    state: StateSchema;
 }

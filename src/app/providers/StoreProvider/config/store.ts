@@ -6,14 +6,14 @@ import { NavigateOptions } from 'react-router-dom';
 import { To } from 'history';
 import { CombinedState } from 'redux';
 import { createReducerManager } from './reducerManager';
-import { StateScheme, ThunkExtraArg } from './StateScheme';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 
 export function createReduxStore(
-    initialState?: StateScheme,
-    asyncReducers?: ReducersMapObject<StateScheme>,
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
     navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
-    const rootReducer: ReducersMapObject<StateScheme> = {
+    const rootReducer: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
@@ -27,7 +27,7 @@ export function createReduxStore(
     };
 
     const store = configureStore({
-        reducer: reducerManager.reduce as Reducer<CombinedState<StateScheme>>,
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({

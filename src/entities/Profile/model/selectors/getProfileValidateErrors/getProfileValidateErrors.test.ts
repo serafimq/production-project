@@ -1,16 +1,16 @@
-import { StateScheme } from 'app/providers/StoreProvider';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { ValidateProfileError } from '../../types/profile';
 import { getProfileValidateErrors } from './getProfileValidateErrors';
 
 describe('getProfileValidateErrors', () => {
     test('should return counter value', () => {
-        const state: DeepPartial<StateScheme> = {
+        const state: DeepPartial<StateSchema> = {
             profile: { validateError: [ValidateProfileError.SERVER_ERROR] },
         };
-        expect(getProfileValidateErrors(state as StateScheme)).toEqual([ValidateProfileError.SERVER_ERROR]);
+        expect(getProfileValidateErrors(state as StateSchema)).toEqual([ValidateProfileError.SERVER_ERROR]);
     });
     test('should work with empty state', () => {
-        const state: DeepPartial<StateScheme> = {};
-        expect(getProfileValidateErrors(state as StateScheme)).toEqual(undefined);
+        const state: DeepPartial<StateSchema> = {};
+        expect(getProfileValidateErrors(state as StateSchema)).toEqual(undefined);
     });
 });

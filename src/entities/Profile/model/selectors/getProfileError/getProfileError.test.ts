@@ -1,15 +1,15 @@
-import { StateScheme } from 'app/providers/StoreProvider';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { getProfileError } from './getProfileError';
 
 describe('getProfileError', () => {
     test('should return counter value', () => {
-        const state: DeepPartial<StateScheme> = {
+        const state: DeepPartial<StateSchema> = {
             profile: { error: 'true' },
         };
-        expect(getProfileError(state as StateScheme)).toEqual('true');
+        expect(getProfileError(state as StateSchema)).toEqual('true');
     });
     test('should work with empty state', () => {
-        const state: DeepPartial<StateScheme> = {};
-        expect(getProfileError(state as StateScheme)).toEqual(undefined);
+        const state: DeepPartial<StateSchema> = {};
+        expect(getProfileError(state as StateSchema)).toEqual(undefined);
     });
 });
