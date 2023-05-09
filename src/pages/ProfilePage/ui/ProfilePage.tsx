@@ -21,6 +21,8 @@ import { getProfileForm } from 'entities/Profile/model/selectors/getProfileForm/
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 interface ProfilePageProps {
@@ -40,6 +42,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const isLoading = useSelector(getProfileIsLoading);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
+    const { id } = useParams<{id: string}>();
 
     const validateErrorTranslate = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка'),
@@ -48,10 +51,11 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         [ValidateProfileError.INCORRECT_USER_DATA]: t('Некорректные имя или фамилию'),
         [ValidateProfileError.NOT_DATA]: t('Данные не указаны'),
     };
-
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') dispatch(fetchProfileData());
-    }, [dispatch]);
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
+        }
+    });
 
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ first: value || '' }));
@@ -85,7 +89,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ country }));
     }, [dispatch]);
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers}>
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
                 {validateErrors?.length && validateErrors.map((error) => (

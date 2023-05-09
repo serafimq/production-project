@@ -52,7 +52,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader
-            removeAfterUnmount
             reducers={initialReducers}
         >
             <div className={classNames(cls.LoginForm, {}, [className])}>

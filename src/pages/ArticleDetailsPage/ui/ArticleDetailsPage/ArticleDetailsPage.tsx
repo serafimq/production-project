@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { ArticleDetails } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text/Text';
@@ -10,14 +10,16 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import { UseInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     fetchCommentsByArticleId,
 } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { AddCommentForm } from 'features/AddCommentForm';
 import {
-    getArticleCommentsIsLoading,
-} from '../../model/selectors/comments';
+    AddCommentFromArticle,
+} from 'pages/ArticleDetailsPage/model/services/addCommentFromArticle/addCommentFromArticle';
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
@@ -39,7 +41,11 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
 
-    UseInitialEffect(() => {
+    const onSendComment = useCallback((text: string) => {
+        dispatch(AddCommentFromArticle(text));
+    }, [dispatch]);
+
+    useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
     });
     if (!id) {
@@ -50,10 +56,11 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         );
     }
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers}>
             <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
                 <ArticleDetails id={id} />
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
+                <AddCommentForm onSendComment={onSendComment} />
                 <CommentList
                     isLoading={commentsIsLoading}
                     comments={comments}

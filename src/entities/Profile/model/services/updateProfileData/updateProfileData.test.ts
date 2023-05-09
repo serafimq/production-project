@@ -15,6 +15,7 @@ const data = {
     first: 'yar',
     city: 'Austin',
     currency: Currency.USD,
+    id: '1',
 };
 
 const mockedAxios = jest.mocked(axios, true);
