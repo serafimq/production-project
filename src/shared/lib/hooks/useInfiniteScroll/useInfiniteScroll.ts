@@ -7,7 +7,6 @@ export interface UseInfiniteScrollOptions {
 }
 
 export function UseInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfiniteScrollOptions) {
-    console.log('UseInfiniteScroll');
     const observer = useRef<IntersectionObserver | null>(null);
 
     useEffect(() => {
