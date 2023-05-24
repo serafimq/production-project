@@ -13,6 +13,7 @@ import { AddCommentForm } from 'features/AddCommentForm';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Page } from 'widgets/Page/Page';
+import { ArticleDetailsPageHeader } from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { articleDetailsPageReducer } from '../../model/slices';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import {
@@ -42,12 +43,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     const recommendationIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
-    const navigate = useNavigate();
-
-    const onBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
-
     const onSendComment = useCallback((text: string) => {
         dispatch(AddCommentFromArticle(text));
     }, [dispatch]);
@@ -66,9 +61,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-                <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
-                    {t('Назад к списку')}
-                </Button>
+                <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
                 <Text
                     size={TextSize.L}
