@@ -1,5 +1,5 @@
 import { TestAsyncThunk } from 'shared/lib/test/TestAsyncThunk/TestAsyncThunk';
-import { ArticleView } from 'entities/Article';
+import { ArticleType, ArticleView, ArticleSortField } from 'entities/Article';
 import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
@@ -16,6 +16,10 @@ describe('fetchNextArticlesPage.test', () => {
                 isLoading: false,
                 hasMore: true,
                 view: ArticleView.SMALL,
+                search: '',
+                order: 'asc',
+                sort: ArticleSortField.TITLE,
+                type: ArticleType.ECONOMICS,
             },
         });
 
@@ -24,7 +28,7 @@ describe('fetchNextArticlesPage.test', () => {
         expect(thunk.dispatch).toBeCalledTimes(4);
         expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 });
     });
-    test('fetchAritcleList not called', async () => {
+    test('fetchArticleList not called', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
@@ -34,6 +38,10 @@ describe('fetchNextArticlesPage.test', () => {
                 isLoading: false,
                 hasMore: false,
                 view: ArticleView.SMALL,
+                search: '',
+                order: 'asc',
+                sort: ArticleSortField.TITLE,
+                type: ArticleType.ECONOMICS,
             },
         });
 

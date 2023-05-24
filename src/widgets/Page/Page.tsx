@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
+import { useDebounce } from 'shared/lib/hooks/useThrottle/useDebounce';
 import cls from './Page.module.scss';
 
 interface PageProps {
@@ -35,7 +35,7 @@ export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
         wrapperRef.current.scrollTop = scrollPosition;
     });
 
-    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+    const onScroll = useDebounce((e: UIEvent<HTMLDivElement>) => {
         dispatch(scrollSaveActions.setScrollPosition({
             position: e.currentTarget.scrollTop,
             path: pathname,
@@ -48,7 +48,7 @@ export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
             onScroll={onScroll}
         >
             {children}
-            <div ref={triggerRef} />
+            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
         </section>
     );
 });

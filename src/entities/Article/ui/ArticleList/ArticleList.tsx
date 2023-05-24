@@ -4,6 +4,7 @@ import { memo } from 'react';
 import {
     ArticleListItemSkeleton,
 } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
+import { Text } from 'shared/ui/Text/Text';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article, ArticleView } from '../../model/types/article';
 import cls from './ArticleList.module.scss';
@@ -38,6 +39,14 @@ export const ArticleList = memo(({
             key={article.id}
         />
     );
+
+    if (!isLoading && !articles.length) {
+        return (
+            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+                <Text title={t('Такой статьи не существует')} />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
