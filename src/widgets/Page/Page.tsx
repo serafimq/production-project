@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { useDebounce } from 'shared/lib/hooks/useThrottle/useDebounce';
+import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 import cls from './Page.module.scss';
 
 interface PageProps {
@@ -26,16 +26,16 @@ export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
     const scrollPosition = useSelector((state: StateSchema) => getScrollByPass(state, pathname));
 
     UseInfiniteScroll({
-        callback: onScrollEnd,
         triggerRef,
         wrapperRef,
+        callback: onScrollEnd,
     });
 
     useInitialEffect(() => {
         wrapperRef.current.scrollTop = scrollPosition;
     });
 
-    const onScroll = useDebounce((e: UIEvent<HTMLDivElement>) => {
+    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         dispatch(scrollSaveActions.setScrollPosition({
             position: e.currentTarget.scrollTop,
             path: pathname,
