@@ -1,27 +1,16 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useCallback } from 'react';
-import { ArticleList } from 'entities/Article';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from 'widgets/Page/Page';
-import { ArticlePageFilter } from 'pages/ArticlePage/ui/ArticlePageFilter/ArticlePageFilter';
 import { useSearchParams } from 'react-router-dom';
-import {
-    fetchNextArticlesPage,
-} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { ArticlePageFilter } from '../../ui/ArticlePageFilter/ArticlePageFilter';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlePage } from '../../model/services/initArticlePage/initArticlePage';
-import { articlesPageReducer, getArticles } from '../../model/slices/articlePageSlice';
+import { articlesPageReducer } from '../../model/slices/articlePageSlice';
 import cls from './ArticlePage.module.scss';
-import {
-    getArticlesPageError,
-    getArticlesPageIsLoading,
-    getArticlesPageView,
-} from '../../model/selectors/articlesPageSelector';
+import { ArticleInfinityList } from '../../ui/ArticleInfinityList/ArticleInfinityList';
 
 interface ArticlesPageProps {
     className?: string;
@@ -34,10 +23,6 @@ const reducers: ReducersList = {
 const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
-    const articles = useSelector(getArticles.selectAll);
-    const isLoading = useSelector(getArticlesPageIsLoading);
-    const view = useSelector(getArticlesPageView);
-    const error = useSelector(getArticlesPageError);
     const [searchParams] = useSearchParams();
 
     const onLoadNextPart = useCallback(() => {
@@ -55,12 +40,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 className={classNames(cls.ArticlesPage, {}, [className])}
             >
                 <ArticlePageFilter />
-                <ArticleList
-                    isLoading={isLoading}
-                    view={view}
-                    articles={articles}
-                    className={cls.list}
-                />
+                <ArticleInfinityList className={cls.list} />
             </Page>
         </DynamicModuleLoader>
     );
