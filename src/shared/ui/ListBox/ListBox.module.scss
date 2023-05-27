@@ -16,8 +16,20 @@
   border-radius: 12px;
   box-shadow: 4px 4px 8px var(--card-bg);
 }
-.optionsBottom {}
-.optionsTop {
+.optionsBottomLeft {
+  right: 0;
+  top: 100%;
+}
+.optionsBottomRight {
+  left: 0;
+  top: 100%;
+}
+.optionsTopLeft {
+  right: 0;
+  bottom: 100%;
+}
+.optionsTopRight {
+  left: 0;
   bottom: 100%;
 }
 .item {
