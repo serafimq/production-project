@@ -13,10 +13,11 @@ const AppRouter = () => {
                 {route.element}
             </Suspense>
         );
+
         return (
             <Route
                 key={route.path}
-                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+                element={route.authOnly ? <RequireAuth roles={route.roles}>{element}</RequireAuth> : element}
                 path={route.path}
             />
         );
