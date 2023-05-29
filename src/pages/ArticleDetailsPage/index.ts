@@ -1,10 +1,10 @@
-export { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage/model/types';
+export type { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage/model/types';
 
 export {
     ArticleDetailsPageAsync as ArticleDetailsPage,
 } from './ui/ArticleDetailsPage/ArticleDetailsPage.async';
 
-export { ArticleDetailsCommentsSchema } from './model/types/ArticleDetailsCommentsSchema';
-export {
+export type { ArticleDetailsCommentsSchema } from './model/types/ArticleDetailsCommentsSchema';
+export type {
     ArticleDetailsPageRecommendationsSchema,
 } from './model/types/articleDetailsPageRecommendationsSchema';
