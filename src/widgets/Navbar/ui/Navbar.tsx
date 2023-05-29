@@ -35,7 +35,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     }, []);
 
     const onLogout = useCallback(() => {
-        console.log('logout');
         dispatch(userActions.logout());
     }, [dispatch]);
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
-import { themesDecorator } from 'shared/config/storybook/ThemesDecorator/ThemesDecorator';
+import { ThemesDecorator } from 'shared/config/storybook/ThemesDecorator/ThemesDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import MainPage from './MainPage';
 
 export default {
@@ -10,6 +11,7 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof MainPage>;
 
 // @ts-ignore
@@ -20,4 +22,4 @@ Normal.args = {};
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [themesDecorator(Theme.DARK)];
+Dark.decorators = [ThemesDecorator(Theme.DARK)];

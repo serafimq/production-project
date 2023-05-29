@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
-import { themesDecorator } from 'shared/config/storybook/ThemesDecorator/ThemesDecorator';
+import { ThemesDecorator } from 'shared/config/storybook/ThemesDecorator/ThemesDecorator';
 import { Text, TextSize, TextTheme } from './Text';
 
 export default {
@@ -42,19 +42,19 @@ PrimaryDark.args = {
     title: 'title',
     text: 'text',
 };
-PrimaryDark.decorators = [themesDecorator(Theme.DARK)];
+PrimaryDark.decorators = [ThemesDecorator(Theme.DARK)];
 
 export const onlyTextDark = Template.bind({});
 onlyTextDark.args = {
     text: 'text',
 };
-onlyTextDark.decorators = [themesDecorator(Theme.DARK)];
+onlyTextDark.decorators = [ThemesDecorator(Theme.DARK)];
 
 export const onlyTitleDark = Template.bind({});
 onlyTitleDark.args = {
     title: 'title',
 };
-onlyTitleDark.decorators = [themesDecorator(Theme.DARK)];
+onlyTitleDark.decorators = [ThemesDecorator(Theme.DARK)];
 
 export const PrimaryM = Template.bind({});
 PrimaryM.args = {
