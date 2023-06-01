@@ -4,7 +4,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { HStack } from 'shared/ui/Stack';
 import { DropdownDirection } from 'shared/types/ui';
 import cls from './ListBox.module.scss';
-import { Button } from '../Button/Button';
+import popupCls from '../../styles/popups.module.scss';
+import { Button } from '../../../Button/Button';
+import { mapDirectionClass } from '../../styles/const';
 
 export interface ListBoxItem {
     value: string;
@@ -23,13 +25,6 @@ interface listBoxProps {
     label?: string;
 }
 
-const mapDirectionClass: Record<DropdownDirection, string> = {
-    'bottom left': cls.optionsBottomLeft,
-    'bottom right': cls.optionsBottomRight,
-    'top left': cls.optionsTopLeft,
-    'top right': cls.optionsTopRRight,
-};
-
 export function ListBox(props: listBoxProps) {
     const {
         items, className, value, defaultValue, onChange, readonly, direction = 'bottom left', label,
@@ -42,7 +37,7 @@ export function ListBox(props: listBoxProps) {
             {label && <span>{`${label}>`}</span>}
             <HListbox
                 as="div"
-                className={classNames(cls.ListBox, {}, [className])}
+                className={classNames('', {}, [className, popupCls.popup])}
                 value={value}
                 onChange={onChange}
                 disabled={readonly}
@@ -73,8 +68,8 @@ export function ListBox(props: listBoxProps) {
                                         classNames(
                                             cls.item,
                                             {
-                                                [cls.active]: active,
-                                                [cls.disabled]: item.disabled,
+                                                [popupCls.active]: active,
+                                                [popupCls.disabled]: item.disabled,
                                             },
                                         )
                                     }
