@@ -4,6 +4,7 @@ import React, {
     ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
+import { Overlay } from 'shared/ui/Overlay/Overlay';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
@@ -43,10 +44,6 @@ export const Modal = ({
             closeHandler();
         }
     }, [closeHandler]);
-    const onContentClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        window.removeEventListener('keydown', onKeyDown);
-    };
 
     useEffect(() => () => {
         if (isOpen) {
@@ -66,10 +63,9 @@ export const Modal = ({
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className])}>
-                <div className={cls.overlay} onClick={closeHandler}>
-                    <div className={cls.content} onClick={onContentClick}>
-                        {children}
-                    </div>
+                <Overlay onClick={closeHandler} />
+                <div className={cls.content}>
+                    {children}
                 </div>
             </div>
         </Portal>
