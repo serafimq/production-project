@@ -7,6 +7,8 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         preferAbsolute: true, // дает возможность импортировать файлы с абсалютными путями
         modules: [options.paths.src, 'node_modules'], // указываем путь до папки
         mainFiles: ['index'], // для каждого модуля главным файлом является index
-        alias: {},
+        alias: {
+            '@': options.paths.src,
+        },
     };
 }

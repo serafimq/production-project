@@ -1,10 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     ArticleListItemSkeleton,
-} from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
-import { Text } from 'shared/ui/Text/Text';
+} from '@/entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
+import { Text } from '@/shared/ui/Text/Text';
 import { ArticleView } from '../../model/consts/consts';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article } from '../../model/types/article';
