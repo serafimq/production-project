@@ -12,6 +12,7 @@ const container = document.getElementById('root');
 if (!container) {
     throw new Error('Контейнер root не найдет. Не удалось вмонтировать реакт приложение');
 }
+
 const root = createRoot(container);
 
 root.render(

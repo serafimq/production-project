@@ -11,17 +11,18 @@ export function buildLoader(options: BuildOptions): webpack.RuleSetRule[] {
         use: ['@svgr/webpack'],
     };
 
-    const babelLoader = buildBabelLoader(options);
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
 
     const cssLoader = buildCssLoader(isDev);
 
     // если бы писали на js, то пришлось бы еще добавить babel-loader для
     // возможности писать jsx, а так хватает и ts-скриптового
-    const typescriptLoader = {
-        test: /\.tsx?$/, // расширения файлов, которые будут проходить через loader => ts / tsx
-        use: 'ts-loader', // loader для этих файлов
-        exclude: /node_modules/, // исключаем ноде модули
-    };
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/, // расширения файлов, которые будут проходить через loader => ts / tsx
+    //     use: 'ts-loader', // loader для этих файлов
+    //     exclude: /node_modules/, // исключаем ноде модули
+    // };
 
     // loader для картинок
     const fileLoader = {
@@ -38,8 +39,9 @@ export function buildLoader(options: BuildOptions): webpack.RuleSetRule[] {
         // порядок, в котором лоудеры возвращаютс, имеет значение
         fileLoader,
         svgLoader,
-        babelLoader,
-        typescriptLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
+        // typescriptLoader,
         cssLoader,
     ];
 }
