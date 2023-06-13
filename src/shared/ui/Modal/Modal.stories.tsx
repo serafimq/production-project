@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Modal } from '@/shared/ui/Modal/Modal';
+import { Modal } from '@/shared/ui/Modal';
 import { ThemesDecorator } from '@/shared/config/storybook/ThemesDecorator/ThemesDecorator';
 import { Theme } from '@/shared/const/theme';
 

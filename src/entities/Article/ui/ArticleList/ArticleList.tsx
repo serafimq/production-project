@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     ArticleListItemSkeleton,
 } from '@/entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
-import { Text } from '@/shared/ui/Text/Text';
+import { Text } from '@/shared/ui/Text';
 import { ArticleView } from '../../model/consts/consts';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article } from '../../model/types/article';
