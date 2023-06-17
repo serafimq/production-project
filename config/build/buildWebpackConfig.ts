@@ -23,7 +23,7 @@ export function buildWebpackConfig(
             rules: buildLoader(options),
         },
         resolve: buildResolvers(options),
-        devtool: isDev ? 'inline-source-map' : undefined, // сурсмап помогает отслеживать ошибки в сбилженом прилоежнии, отключаем если это продакшен мод
+        devtool: isDev ? 'eval-cheap-module-source-map' : undefined, // сурсмап помогает отслеживать ошибки в сбилженом прилоежнии, отключаем если это продакшен мод
         devServer: isDev ? buildDevServer(options) : undefined,
         // подключаем дев сервер, отключаем если это продакшен мод
     };
