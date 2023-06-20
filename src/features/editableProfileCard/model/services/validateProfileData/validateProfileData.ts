@@ -3,9 +3,7 @@ import { ValidateProfileError } from '../../consts/consts';
 
 export const ValidateProfileData = (profile?: Profile) => {
     if (!profile) return [ValidateProfileError.NOT_DATA];
-    const {
-        first, lastname, age, country,
-    } = profile;
+    const { first, lastname, age, country } = profile;
 
     const error: ValidateProfileError[] = [];
 

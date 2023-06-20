@@ -27,7 +27,14 @@ interface listBoxProps {
 
 export function ListBox(props: listBoxProps) {
     const {
-        items, className, value, defaultValue, onChange, readonly, direction = 'bottom left', label,
+        items,
+        className,
+        value,
+        defaultValue,
+        onChange,
+        readonly,
+        direction = 'bottom left',
+        label,
     } = props;
 
     const optionClasses = [mapDirectionClass[direction]];
@@ -42,15 +49,8 @@ export function ListBox(props: listBoxProps) {
                 onChange={onChange}
                 disabled={readonly}
             >
-                <HListbox.Button
-                    disabled={readonly}
-                    className={cls.trigger}
-                >
-                    <Button
-                        disabled={readonly}
-                    >
-                        {value ?? defaultValue}
-                    </Button>
+                <HListbox.Button disabled={readonly} className={cls.trigger}>
+                    <Button disabled={readonly}>{value ?? defaultValue}</Button>
                 </HListbox.Button>
                 <HListbox.Options
                     className={classNames(cls.options, {}, optionClasses)}
@@ -64,15 +64,10 @@ export function ListBox(props: listBoxProps) {
                         >
                             {({ active, selected }) => (
                                 <li
-                                    className={
-                                        classNames(
-                                            cls.item,
-                                            {
-                                                [popupCls.active]: active,
-                                                [popupCls.disabled]: item.disabled,
-                                            },
-                                        )
-                                    }
+                                    className={classNames(cls.item, {
+                                        [popupCls.active]: active,
+                                        [popupCls.disabled]: item.disabled,
+                                    })}
                                 >
                                     {selected && '!!!'}
                                     {item.content}

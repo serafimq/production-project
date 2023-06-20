@@ -5,5 +5,8 @@ export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 export { articleDetailsSlice } from './model/slice/articleDetailsSlice';
 export { ArticleList } from './ui/ArticleList/ArticleList';
 export {
-    ArticleSortField, ArticleView, ArticleType, ArticleBlockType,
+    ArticleSortField,
+    ArticleView,
+    ArticleType,
+    ArticleBlockType,
 } from './model/consts/consts';

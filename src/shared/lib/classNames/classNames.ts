@@ -11,8 +11,7 @@ export function classNames(
         ...Object.entries(mods)
             .filter(([, value]) => Boolean(value))
             .map(([className]) => className),
-    ]
-        .join(' ');
+    ].join(' ');
 }
 
 // classNames('remove-btn', {hovered: true, selectable: true, red: false}, ['pdg']);

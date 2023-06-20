@@ -3,7 +3,8 @@ import webpack from 'webpack';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildPaths } from './config/build/types/config';
 
-export default (env: BuildEnv) => { // передаем env из package.json
+export default (env: BuildEnv) => {
+    // передаем env из package.json
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'), // стартовая точка нашего приложения
         build: path.resolve(__dirname, 'build'), // название папки, куда собирается билд

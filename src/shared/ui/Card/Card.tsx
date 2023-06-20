@@ -1,6 +1,4 @@
-import {
-    HTMLAttributes, memo, ReactNode,
-} from 'react';
+import { HTMLAttributes, memo, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Card.module.scss';
 
@@ -15,25 +13,22 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     max?: boolean;
 }
 
-export const Card = memo((
-    {
+export const Card = memo(
+    ({
         className,
         children,
         max,
         theme = CardTheme.NORMAL,
         ...otherProps
-    }: CardProps,
-) => (
-    <div
-        className={
-            classNames(
-                cls.Card,
-                { [cls.max]: max },
-                [className, cls[theme]],
-            )
-        }
-        {...otherProps}
-    >
-        {children}
-    </div>
-));
+    }: CardProps) => (
+        <div
+            className={classNames(cls.Card, { [cls.max]: max }, [
+                className,
+                cls[theme],
+            ])}
+            {...otherProps}
+        >
+            {children}
+        </div>
+    ),
+);

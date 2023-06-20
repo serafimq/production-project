@@ -10,7 +10,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleInfinityList>;
 
-const Template: ComponentStory<typeof ArticleInfinityList> = (args) => <ArticleInfinityList {...args} />;
+const Template: ComponentStory<typeof ArticleInfinityList> = (args) => (
+    <ArticleInfinityList {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

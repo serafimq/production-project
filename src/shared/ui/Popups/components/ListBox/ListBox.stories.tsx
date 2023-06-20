@@ -10,7 +10,9 @@ export default {
     },
 } as ComponentMeta<typeof ListBox>;
 
-const Template: ComponentStory<typeof ListBox> = (args) => <ListBox {...args} />;
+const Template: ComponentStory<typeof ListBox> = (args) => (
+    <ListBox {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

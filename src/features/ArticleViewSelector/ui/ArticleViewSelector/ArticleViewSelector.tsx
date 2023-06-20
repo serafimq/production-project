@@ -25,34 +25,31 @@ const viewTypes = [
     },
 ];
 
-export const ArticleViewSelector = memo((
-    {
-        className,
-        view,
-        onViewClick,
-    }: ArticleViewSelectorProps,
-) => {
-    const { t } = useTranslation();
-    const onChangeView = (newView: ArticleView) => () => {
-        onViewClick?.(newView);
-    };
-    return (
-        <div className={classNames(cls.ArticleViewSelector, {}, [className])}>
-            {viewTypes.map((viewType) => (
-                <Button
-                    key={viewType.view}
-                    theme={ButtonTheme.CLEAR}
-                    onClick={onChangeView(viewType.view)}
-                >
-                    <Icon
-                        Svg={viewType.icon}
-                        className={classNames(
-                            '',
-                            { [cls.notSelected]: viewType.view !== view },
-                        )}
-                    />
-                </Button>
-            ))}
-        </div>
-    );
-});
+export const ArticleViewSelector = memo(
+    ({ className, view, onViewClick }: ArticleViewSelectorProps) => {
+        const { t } = useTranslation();
+        const onChangeView = (newView: ArticleView) => () => {
+            onViewClick?.(newView);
+        };
+        return (
+            <div
+                className={classNames(cls.ArticleViewSelector, {}, [className])}
+            >
+                {viewTypes.map((viewType) => (
+                    <Button
+                        key={viewType.view}
+                        theme={ButtonTheme.CLEAR}
+                        onClick={onChangeView(viewType.view)}
+                    >
+                        <Icon
+                            Svg={viewType.icon}
+                            className={classNames('', {
+                                [cls.notSelected]: viewType.view !== view,
+                            })}
+                        />
+                    </Button>
+                ))}
+            </div>
+        );
+    },
+);

@@ -14,25 +14,25 @@ interface ArticleInfinityListProps {
     className?: string;
 }
 
-export const ArticleInfinityList = memo(({ className }: ArticleInfinityListProps) => {
-    const { t } = useTranslation();
-    const articles = useSelector(getArticles.selectAll);
-    const isLoading = useSelector(getArticlesPageIsLoading);
-    const view = useSelector(getArticlesPageView);
-    const error = useSelector(getArticlesPageError);
+export const ArticleInfinityList = memo(
+    ({ className }: ArticleInfinityListProps) => {
+        const { t } = useTranslation();
+        const articles = useSelector(getArticles.selectAll);
+        const isLoading = useSelector(getArticlesPageIsLoading);
+        const view = useSelector(getArticlesPageView);
+        const error = useSelector(getArticlesPageError);
 
-    if (error) {
+        if (error) {
+            return <Text title={t('Произошла ошибка')} />;
+        }
+
         return (
-            <Text title={t('Произошла ошибка')} />
+            <ArticleList
+                isLoading={isLoading}
+                view={view}
+                articles={articles}
+                className={className}
+            />
         );
-    }
-
-    return (
-        <ArticleList
-            isLoading={isLoading}
-            view={view}
-            articles={articles}
-            className={className}
-        />
-    );
-});
+    },
+);

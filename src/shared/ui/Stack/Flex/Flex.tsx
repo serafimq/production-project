@@ -1,5 +1,8 @@
 import React, {
-    DetailedHTMLProps, HTMLAttributes, memo, ReactNode,
+    DetailedHTMLProps,
+    HTMLAttributes,
+    memo,
+    ReactNode,
 } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Flex.module.scss';
@@ -34,7 +37,10 @@ const gapClasses: Record<FlexGap, string> = {
     32: cls.gap32,
 };
 
-type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type DivProps = DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+>;
 
 // export interface FlexProps extends DivProps {
 export interface FlexProps {
@@ -70,8 +76,6 @@ export const Flex = memo((props: FlexProps) => {
         gap && gapClasses[gap],
     ];
     return (
-        <div className={classNames(cls.Flex, mods, classes)}>
-            { children }
-        </div>
+        <div className={classNames(cls.Flex, mods, classes)}>{children}</div>
     );
 });

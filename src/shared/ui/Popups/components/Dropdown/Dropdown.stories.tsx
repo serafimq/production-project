@@ -11,14 +11,12 @@ export default {
     },
 } as ComponentMeta<typeof Dropdown>;
 
-const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
+const Template: ComponentStory<typeof Dropdown> = (args) => (
+    <Dropdown {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
     trigger: <Button>Open</Button>,
-    items: [
-        { content: '1' },
-        { content: '2' },
-        { content: '3' },
-    ],
+    items: [{ content: '1' }, { content: '2' }, { content: '3' }],
 };

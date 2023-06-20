@@ -5,9 +5,7 @@ import { Page } from '@/widgets/Page/Page';
 const ForbiddenPage = memo(() => {
     const { t } = useTranslation('');
     return (
-        <Page
-            data-testid="ForbiddenPage"
-        >
+        <Page data-testid="ForbiddenPage">
             {t('У вас нет доступа к этой странице')}
         </Page>
     );

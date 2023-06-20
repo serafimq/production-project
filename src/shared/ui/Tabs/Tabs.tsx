@@ -6,7 +6,7 @@ import { Card, CardTheme } from '../Card/Card';
 
 export interface TabItem {
     value: string;
-    content: ReactNode
+    content: ReactNode;
 }
 interface TabsProps {
     className?: string;
@@ -15,25 +15,32 @@ interface TabsProps {
     onTabClick: (tab: TabItem) => void;
 }
 
-export const Tabs = memo(({
-    className, tabs, value, onTabClick,
-}: TabsProps) => {
-    const { t } = useTranslation();
-    const clickHandler = useCallback((tab: TabItem) => () => {
-        onTabClick(tab);
-    }, [onTabClick]);
-    return (
-        <div className={classNames(cls.Tabs, {}, [className])}>
-            {tabs.map((tab) => (
-                <Card
-                    theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
-                    className={cls.tab}
-                    key={tab.value}
-                    onClick={clickHandler(tab)}
-                >
-                    {tab.content}
-                </Card>
-            ))}
-        </div>
-    );
-});
+export const Tabs = memo(
+    ({ className, tabs, value, onTabClick }: TabsProps) => {
+        const { t } = useTranslation();
+        const clickHandler = useCallback(
+            (tab: TabItem) => () => {
+                onTabClick(tab);
+            },
+            [onTabClick],
+        );
+        return (
+            <div className={classNames(cls.Tabs, {}, [className])}>
+                {tabs.map((tab) => (
+                    <Card
+                        theme={
+                            tab.value === value
+                                ? CardTheme.NORMAL
+                                : CardTheme.OUTLINED
+                        }
+                        className={cls.tab}
+                        key={tab.value}
+                        onClick={clickHandler(tab)}
+                    >
+                        {tab.content}
+                    </Card>
+                ))}
+            </div>
+        );
+    },
+);

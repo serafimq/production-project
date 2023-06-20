@@ -63,10 +63,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             </Button>
             {/* eslint-disable-next-line i18next/no-literal-string */}
             {isAuthModal && (
-                <LoginModal
-                    isOpen={isAuthModal}
-                    onClose={onCloseModal}
-                />
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
             )}
         </header>
     );

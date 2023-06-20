@@ -1,5 +1,8 @@
 import {
-    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
+    AnyAction,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
@@ -7,9 +10,7 @@ import { CounterSchema } from '@/entities/Counter';
 import { UserSchema } from '@/entities/User';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { ArticleDetailsSchema } from '@/entities/Article';
-import {
-    ArticleDetailsPageSchema,
-} from '@/pages/ArticleDetailsPage';
+import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { ArticlesPageSchema } from '@/pages/ArticlePage';
 import { ScrollSaveScheme } from '@/features/ScrollSave';
@@ -35,7 +36,10 @@ export type StateSchemaKey = keyof StateSchema;
 export type MountedReducer = OptionalRecord<StateSchemaKey, boolean>;
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    reduce: (
+        state: StateSchema,
+        action: AnyAction,
+    ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
     getMountedReducer: () => MountedReducer;
@@ -46,7 +50,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 }
 
 export interface ThunkExtraArg {
-    api: AxiosInstance,
+    api: AxiosInstance;
 }
 
 export interface ThunkConfig<T> {

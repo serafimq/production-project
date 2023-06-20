@@ -4,5 +4,4 @@ export enum ValidateProfileError {
     INCORRECT_COUNTRY = 'INCORRECT_COUNTRY',
     NOT_DATA = 'NOT_DATA',
     SERVER_ERROR = 'SERVER_ERROR',
-
 }
